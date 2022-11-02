@@ -1,0 +1,52 @@
+body {
+  font-size: bold;
+}
+
+#price-boxchart-div {
+  padding: 20px;
+  text-align: center;
+}
+
+#worldmap-div {
+  padding: 20px;
+  text-align: center;
+}
+
+#circular-div {
+  /* padding: 20px; */
+  text-align: center;
+}
+
+.select-div {
+  width: 300px;
+  /* margin: auto; */
+}
+
+#stack-barchart-div {
+  padding: 20px;
+  text-align: center;
+}
+
+#country-div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* padding: 20px; */
+  text-align: center;
+  justify-content: center;
+}
+
+#my-header-div {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://user-images.githubusercontent.com/32476235/199532381-4fb63aed-883d-4c0b-b9b0-b983fd103dfc.png");
+  /* height: 50%; */
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+            <!-- https://user-images.githubusercontent.com/32476235/199532381-4fb63aed-883d-4c0b-b9b0-b983fd103dfc.png -->
