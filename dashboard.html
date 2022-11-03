@@ -1,38 +1,22 @@
 <html>
   <head>
     <title>INLS641 Final Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="asset/favicon.ico" />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
-      crossorigin="anonymous"
-    />
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet"/>
     <link href="./index.css" rel="stylesheet" />
   </head>
 
   <body>
-    <nav
-      class="navbar navbar-expand-lg bg-light shadow fixed-to navbar-dark bg-dark"
-    >
+    <nav class="navbar navbar-expand-lg bg-light shadow fixed-to navbar-dark bg-dark">
       <div class="container">
         <a
           class="navbar-brand"
@@ -86,12 +70,71 @@
       </div>
 
 -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type='text/javascript'>
+      var data = [
+          {name: "Not at all", val: 70},
+          {name: "Low", val: 55},
+          {name: "moderate", val: 110},
+          {name: "high", val: 52},
+          {name: "very high", val: 92},
+      ];
+      var w = 400,
+          h = 400,
+          r = Math.min(w, h) / 2,
+          labelr = r + 30, // radius for label anchor
+          color = d3.scaleOrdinal(d3.schemeCategory20),
+          donut = d3.pie()
+              .startAngle(-90 * (Math.PI/180))
+              .endAngle(90 * (Math.PI/180))
+          arc = d3.arc()
+              .innerRadius(r * .6)
+              .outerRadius(r);
+      var vis = d3.select("body")
+          .append("svg:svg")
+          .data([data])
+          .attr("width", w + 150)
+          .attr("height", h);
+      var arcs = vis.selectAll("g.arc")
+          .data(donut.value(function (d) {
+              return d.val
+          }))
+          .enter().append("svg:g")
+          .attr("class", "arc")
+          .attr("transform", "translate(" + (r + 30) + "," + r + ")");
+      arcs.append("svg:path")
+          .attr("fill", function (d, i) {
+              return color(i);
+          })
+          .attr("d", arc);
+      arcs.append("svg:text")
+          .attr("transform", function (d) {
+              var textWidth = getTextWidth(d.data.val.toString(), "Arial");
+              return "translate(" + (arc.centroid(d)[0] - textWidth) + "," + arc.centroid(d)[1] + ")";
+          })
+          .attr("dy", ".35em")
+          .attr("text-anchor", function (d) {
+              // are we past the center?
+              return (d.endAngle + d.startAngle) / 2 > Math.PI ?
+                  "end" : "start";
+          })
+          .text(function (d) {
+              return d.value.toFixed(2);
+          });
+      function getTextWidth(text, font) {
+          var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+          var context = canvas.getContext("2d");
+          context.font = font;
+          var metrics = context.measureText(text);
+          return metrics.width;
+      }
+    </script>
   </body>
 </html>
