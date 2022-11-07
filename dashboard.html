@@ -13,6 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet"/>
     <link href="./index.css" rel="stylesheet" />
+
+    <style> /* set the CSS */
+      .bar { fill: steelblue; }
+    </style>
+
   </head>
 
   <body>
@@ -65,7 +70,7 @@
       </div>
     </nav>
     <!--
-    <div class="container" style="margin-top: 25px">
+    <div class="container" style="-top: 25px">
      
       </div>
 
@@ -79,7 +84,9 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type='text/javascript'>
-      var data = [
+
+    //start of donut code  
+    var data = [
           {name: "Not at all", val: 70},
           {name: "Low", val: 55},
           {name: "moderate", val: 110},
@@ -100,7 +107,7 @@
       var vis = d3.select("body")
           .append("svg:svg")
           .data([data])
-          .attr("width", w + 150)
+          .attr("width", w + 100)
           .attr("height", h);
       var arcs = vis.selectAll("g.arc")
           .data(donut.value(function (d) {
@@ -135,6 +142,64 @@
           var metrics = context.measureText(text);
           return metrics.width;
       }
+//end of dounut code
+
+// bar chart code starts here
+// Set graph margins and dimensions
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+    
+    // Set ranges
+    var x = d3.scaleBand()
+              .range([0, width])
+              .padding(0.1);
+    var y = d3.scaleLinear()
+              .range([height, 0]);
+    var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+    
+    var bar_data = [
+          {name: "A few times a year or less", amounts: 70},
+          {name: "Once a month or less", amounts: 55},
+          {name: "A few times a month", amounts: 110},
+          {name: "Once a week", amounts: 52},
+          {name: "A few times a week", amounts: 92},
+          {name: "Everyday", amounts: 38}
+      ];           
+
+      // Format data
+      bar_data.forEach(function(d) {
+        d.amounts = +d.amounts;
+      });
+    
+      // Scale the range of the data in the domains
+      x.domain(bar_data.map(function(d) { return d.name; }));
+      y.domain([0, d3.max(bar_data, function(d) { return d.amounts; })]);
+    
+      // Append rectangles for bar chart
+      svg.selectAll(".bar")
+          .data(bar_data)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.name); })
+          .attr("width", x.bandwidth())
+          .attr("y", function(d) { return y(d.amounts); })
+          .attr("height", function(d) { return height - y(d.amounts); });
+    
+      // Add x axis
+      svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x));
+    
+      // Add y axis
+      svg.append("g")
+          .call(d3.axisLeft(y));
+
     </script>
   </body>
 </html>
