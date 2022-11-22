@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-const margin = { top: 5, right: 5, bottom: 5, left: 5 },
+const margin = { top: 5, right: 5, bottom: 30, left: 150 },
   width = 400 - margin.left - margin.right,
   height = 600 - margin.top - margin.bottom;
 
@@ -19,12 +19,12 @@ d3.csv(
   //  console.log(data);
   // Add X axis
   const x = d3.scaleLinear().domain([0, 0.1]).range([0, width]);
-
   svg
     .append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(d3.axisBottom(x))
     .selectAll("text")
+    .style("color", "black")
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end");
 
@@ -35,7 +35,13 @@ d3.csv(
     .domain(data.map((d) => d.Feature))
     .padding(0.1);
 
-  svg.append("g").call(d3.axisLeft(y));
+  svg
+    .append("g")
+    .call(d3.axisLeft(y))
+    //.style("font-size", "20px")
+    .style("color", "black")
+    .attr("text-anchor", "end")
+    .attr("transform", "translate(0," + y + ")");
 
   //Bars
   svg
