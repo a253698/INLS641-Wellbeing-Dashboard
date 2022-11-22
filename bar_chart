@@ -1,0 +1,180 @@
+ <script type='text/javascript'>
+
+    //start of donut code  
+    var data = [
+          {name: "Not at all", val: 70},
+          {name: "Low", val: 55},
+          {name: "moderate", val: 110},
+          {name: "high", val: 52},
+          {name: "very high", val: 92},
+      ];
+      var w = 400,
+          h = 400,
+          r = Math.min(w, h) / 2,
+          labelr = r + 30, // radius for label anchor
+          color = d3.scaleOrdinal(d3.schemeCategory20),
+          donut = d3.pie()
+              .startAngle(-90 * (Math.PI/180))
+              .endAngle(90 * (Math.PI/180))
+          arc = d3.arc()
+              .innerRadius(r * .6)
+              .outerRadius(r);
+      var vis = d3.select("body")
+          .append("svg:svg")
+          .data([data])
+          .attr("width", w + 100)
+          .attr("height", h);
+      var arcs = vis.selectAll("g.arc")
+          .data(donut.value(function (d) {
+              return d.val
+          }))
+          .enter().append("svg:g")
+          .attr("class", "arc")
+          .attr("transform", "translate(" + (r + 30) + "," + r + ")");
+      arcs.append("svg:path")
+          .attr("fill", function (d, i) {
+              return color(i);
+          })
+          .attr("d", arc);
+      arcs.append("svg:text")
+          .attr("transform", function (d) {
+              var textWidth = getTextWidth(d.data.val.toString(), "Arial");
+              return "translate(" + (arc.centroid(d)[0] - textWidth) + "," + arc.centroid(d)[1] + ")";
+          })
+          .attr("dy", ".35em")
+          .attr("text-anchor", function (d) {
+              // are we past the center?
+              return (d.endAngle + d.startAngle) / 2 > Math.PI ?
+                  "end" : "start";
+          })
+          .text(function (d) {
+              return d.value.toFixed(2);
+          });
+      function getTextWidth(text, font) {
+          var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+          var context = canvas.getContext("2d");
+          context.font = font;
+          var metrics = context.measureText(text);
+          return metrics.width;
+      }
+//end of dounut code
+
+// bar chart code starts here
+// Set graph margins and dimensions
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;        
+
+// append the svg object to the body of the page
+var svg1 = d3.select("#my_tooltip")
+    .append("svg")
+    .attr("width", 60)
+    .attr("height", 20)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+          
+          
+    // Set ranges
+    var x = d3.scaleBand()
+              .range([0, width])
+              .padding(0.1);
+    var y = d3.scaleLinear()
+              .range([height, 0]);
+    var svg = d3.select("body").append("svg")
+        .attr("id", "barchart_svg")              
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + 150 + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+    
+    var bar_data = [
+          {name: "Professional Relationships", amounts: 0.06},
+          {name: "Administrative burden", amounts: 0.054},
+          {name: "Instrinsic motivation", amounts: 0.042},
+          {name: "Excessive workload", amounts: 0.037},
+          {name: "Race", amounts: 0.034},
+          {name: "Inadequate staffing", amounts: 0.03},
+          {name: "Values and expectations", amounts: 0.03},
+          {name: "Lack of support for research", amounts: 0.03},
+          {name: "Moral distress", amounts: 0.029},
+          {name: "Time pressure", amounts: 0.029},
+          {name: "Organizational culture", amounts: 0.025},
+          {name: "Marital status", amounts: 0.025},
+          {name: "Unmanageable work schedules", amounts: 0.024},
+          {name: "Physical work enviroment", amounts: 0.02},
+          {name: "Inefficient workflows", amounts: 0.018},
+          {name: "Lack of recognition for QI activites", amounts: 0.015},
+          {name: "Job control", amounts: 0.011},
+          {name: "Inadequate technology", amounts: 0.009},
+          {name: "Work life integration", amounts: 0.004},
+          {name: "Lack if dedicated time", amounts: 0.003},
+      ];
+    
+      // Format data
+      bar_data.forEach(function(d) {
+        d.amounts = +d.amounts;
+      });
+    
+      // Scale the range of the data in the domains
+      x.domain(bar_data.map(function(d) { return d.name; }));
+      y.domain([0, d3.max(bar_data, function(d) { return d.amounts; })]);
+    
+      var tooltip = d3.select("#my_tooltip")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
+
+    // Three function that change the tooltip when user hover / move / leave a cell
+    var mouseover = function(d) {
+      tooltip
+          .html("Amount: " + d.amounts + "<br>" + "Name: " + d.name)
+          .style("opacity", 1)
+    }
+    var mousemove = function(d) {
+      tooltip
+        .style("left", (d3.mouse(this)[0]+300) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px")
+    }
+    var mouseleave = function(d) {
+      tooltip
+        .style("opacity", 0)
+    }
+
+
+      // Append rectangles for bar chart
+      svg.selectAll(".bar")
+          .data(bar_data)
+          .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.name); })
+          .attr("width", x.bandwidth())
+          .attr("y", function(d) { return y(d.amounts); })
+          .attr("height", function(d) { return height - y(d.amounts); })
+          //tooltip code
+          .on("mouseover", mouseover)
+          .on("mousemove", mousemove)
+          .on("mouseleave", mouseleave)
+
+      // Add x axis
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(x))
+          .selectAll("text")
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", "rotate(-70)");
+          
+      // Add y axis
+      svg.append("g")
+          .call(d3.axisLeft(y));
+
+    </script>
