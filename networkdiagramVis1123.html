@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Chart</title>
+</head>
+<body>
+
+<p>Job Position:
+    <select onchange="render(this.options[this.selectedIndex].value);">
+        <option value="all">All</option>
+        <option value="nurse">Nurse</option>
+        <option value="physician">Physician</option>
+    </select>
+</p>
+<div>
+    <svg id="chart" width="1000" height="600"></svg>
+</div>
+
+
+<script src="https://d3js.org/d3.v7.js"></script>
+<script>
+    function render(_subset){
+		
+        //set the colors of the dots
+        var colors = ["#A84088","#F24B6A","#1FCECB","#FFDA66","#FF641C","#D94602","#008C7E","#02D9C3","#81BF63","#F2622E"];
+
+        var svg = d3.select("#chart");
+		svg.selectAll("g").remove();
+
+        //creating a function for initiating the lines
+        var curveLine = d3.line()
+            .x(function(d) {
+                return d.x
+            })
+            .y(function(d) {
+                return d.y
+            })
+            .curve(d3.curveBasis);
+
+        //create a variable for the dataset
+        var chartData;
+
+        //create a function for drawing the lines, s is the starting id, e is the ending id
+        function drawPath(s,e){
+            var d = {source:{},target:{}};
+            for(var i=0;i<chartData.length;i++){
+                if(chartData[i].topic_id==s){
+                    d.source.x = chartData[i].x*15+50;
+                    d.source.y = chartData[i].y*10+50;
+                }else if(chartData[i].topic_id==e){
+                    d.target.x = chartData[i].x*15+50;
+                    d.target.y = chartData[i].y*10+50;
+                }
+            }
+            return curveLine([{x:d.source.x,y:d.source.y},
+                {x:d.target.x,y:d.target.y}])
+        }
+
+        let file_name = "bubble_chart.csv";
+        if(_subset == "nurse"){
+           file_name = "bubble_chart_nurse.csv";
+        }else if (_subset == "physician"){
+            file_name = "bubble_chart_physician.csv";}
+        else if (_subset == "all"){
+            file_name = "bubble_chart.csv";
+        }
+
+        //loading the data from the csv file
+        d3.csv(file_name).then(function(data){
+            // console.log(data)
+            chartData = data;
+            var pathArray = [];
+            //draw the lines
+            for(var i=0;i<data.length;i++){
+                var pa = []
+                for(var j=1;j<data[i].connection.length;j++){
+                    var size = 3;
+                    if(data[i].thick.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                        size = 5;
+                    }else if(data[i].thin.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                        size = 1
+                    }
+                    var path = svg.append("g").append("path")
+                        .style("fill","none")
+                        .style("stroke","transparent")
+                        .style("stroke-width",size)
+                        .attr("d", drawPath(data[i].connection[0],data[i].connection[j]))
+                    pa.push(path);
+                }
+                pathArray.push(pa);
+            }
+
+            //draw the nodes
+            svg.append("g").selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx",function(d){return d.x*15+50})
+                .attr("cy",function(d){return d.y*10+50})
+                .attr("r",50)
+                .attr("fill",function(d,i){
+                    return colors[i];
+                })
+                .on("mouseover",function(d,t){
+                    var i = Number(t.topic_id)-1;
+                    for(var m=0;m<pathArray.length;m++){
+                        for(var n=0;n<pathArray[m].length;n++){
+                            pathArray[m][n].style("stroke","transparent");
+                        }
+                    }
+                    for(var m=0;m<pathArray[i].length;m++){
+                        pathArray[i][m].style("stroke","#ff0000");
+                    }
+                })
+                .on("mouseout",function(d,t){
+                    for(var m=0;m<pathArray.length;m++){
+                        for(var n=0;n<pathArray[m].length;n++){
+                            pathArray[m][n].style("stroke","transparent");
+                        }
+                    }
+                })
+
+            //label the text
+            svg.append("g").selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("x",function(d){return d.x*15+50})
+                .attr("y",function(d){return d.y*10+50})
+                .attr("text-anchor","middle")
+                .attr("dominant-baseline","middle")
+                .attr("fill","#000")
+                .style("pointer-events","none")
+                .style("font-size",12)
+                .text(function(d){return d.topic})
+        });
+    }
+    render();
+</script>
+</body>
+</html>
