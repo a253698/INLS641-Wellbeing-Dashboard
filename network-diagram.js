@@ -1,18 +1,5 @@
-// set the dimensions and margins of the graph
-const margin = { top: 5, right: 5, bottom: 5, left: 5 },
-  width = 1000 - margin.left - margin.right,
-  height = 800 - margin.top - margin.bottom;
-
-// append the svg object to the body of the page
-const svg = d3
-  .select("#LDA-network-diagram")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-function render() {
+function render(_subset) {
+  console.log("success " + _subset);
   //set the colors of the dots
   var colors = [
     "#A84088",
@@ -27,7 +14,8 @@ function render() {
     "#F2622E",
   ];
 
-  //  var svg = d3.select("#LDA-network-diagram");
+  var svg = d3.select("#chart");
+  svg.selectAll("g").remove();
 
   //creating a function for initiating the lines
   var curveLine = d3
@@ -61,9 +49,18 @@ function render() {
     ]);
   }
 
+  let file_name = "bubble_chart.csv";
+  if (_subset == "nurse") {
+    file_name = "bubble_chart_nurse.csv";
+  } else if (_subset == "physician") {
+    file_name = "bubble_chart_physician.csv";
+  } else if (_subset == "all") {
+    file_name = "bubble_chart.csv";
+  }
+
   //loading the data from the csv file
-  d3.csv("bubble_chart.csv").then(function (data) {
-    console.log(data);
+  d3.csv(file_name).then(function (data) {
+    // console.log(data)
     chartData = data;
     var pathArray = [];
     //draw the lines
@@ -83,6 +80,7 @@ function render() {
           size = 1;
         }
         var path = svg
+          .append("g")
           .append("path")
           .style("fill", "none")
           .style("stroke", "transparent")
@@ -152,5 +150,4 @@ function render() {
       });
   });
 }
-
 render();

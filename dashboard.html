@@ -1,155 +1,265 @@
 <html>
-  <head>
-    <title>INLS641 Final Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="asset/favicon.ico" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-    <link href="./index.css" rel="stylesheet" />
-  </head>
-
-  <body>
-    <nav
-      class="navbar navbar-expand-lg bg-light shadow fixed-to navbar-dark bg-dark"
-    >
-      <div class="container">
-        <a
-          class="navbar-brand"
-          href="index.html"
-          style="font-family: 'Supermercado One', cursive"
-          >INLS641 Final Project</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item" style="padding-right: 5px">
-              <a class="nav-link" href="index.html">Report</a>
-            </li>
-            <li class="nav-item" style="padding-right: 5px">
-              <a class="nav-link" href="dashboard.html">Well-being Dashboard</a>
-            </li>
-            <li class="nav-item" style="padding-right: 5px">
-              <a class="nav-link" target="_blank" href="">Slide</a>
-            </li>
-            <li class="navbar-brand" style="padding-left: 5px">
-              <a
-                class="navbar-brand"
-                target="_blank"
-                href="https://github.com/VisDesignStudies/module-three-design-study-lite-chintseng"
-              >
-                <img
-                  src="/asset/image/GitHub-Mark-Light-64px copy.png"
-                  width="30"
-                  height="30"
-                  alt=""
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-      <div class="row" style="display: flex; width: 100%">
-          <div class="col-2" style="border-style: solid; height: 100%">
-          <div id="" width="500" height="300" style="margin-bottom: 50px">
-            <h5>Information / Explanation</h5>
-          </div>
-        </div>
-        <div class="col-10" style="border-style: solid; height: 100%">
-          
-          <div id="country-div" style="margin-top: 23px">
-            <div
-              id="feature-selection-horizontal-bar-chart"
-              style="margin-bottom: 50px"
-            >
-              <h5>Bar Chart</h5>
+   <head>
+      <title>INLS641 Final Project</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="shortcut icon" href="asset/favicon.ico" />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
+         crossorigin="anonymous"
+         />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+         rel="stylesheet"
+         />
+      <link
+         href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
+         rel="stylesheet"
+         />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap"
+         rel="stylesheet"
+         />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap"
+         rel="stylesheet"
+         />
+      <link href="./index.css" rel="stylesheet" />
+   </head>
+   <body>
+      <nav
+         class="navbar navbar-expand-lg bg-light shadow fixed-to navbar-dark bg-dark"
+         >
+         <div class="container">
+            <a
+               class="navbar-brand"
+               href="index.html"
+               style="font-family: 'Supermercado One', cursive"
+               >INLS641 Final Project</a
+               >
+            <button
+               class="navbar-toggler"
+               type="button"
+               data-bs-toggle="collapse"
+               data-bs-target="#navbarResponsive"
+               aria-controls="navbarResponsive"
+               aria-expanded="false"
+               aria-label="Toggle navigation"
+               >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav ms-auto">
+                  <li class="nav-item" style="padding-right: 5px">
+                     <a class="nav-link" href="index.html">Report</a>
+                  </li>
+                  <li class="nav-item" style="padding-right: 5px">
+                     <a class="nav-link" href="dashboard.html">Well-being Dashboard</a>
+                  </li>
+                  <li class="nav-item" style="padding-right: 5px">
+                     <a class="nav-link" target="_blank" href="">Slide</a>
+                  </li>
+                  <li class="navbar-brand" style="padding-left: 5px">
+                     <a
+                        class="navbar-brand"
+                        target="_blank"
+                        href="https://github.com/VisDesignStudies/module-three-design-study-lite-chintseng"
+                        >
+                     <img
+                        src="/asset/image/GitHub-Mark-Light-64px copy.png"
+                        width="30"
+                        height="30"
+                        alt=""
+                        />
+                     </a>
+                  </li>
+               </ul>
             </div>
-          </div>
-        </div>
-        </div>
-          <div class="row" style="display: flex; width: 100%">
-             <div class="col-2" style="border-style: solid; height: 100%">
-          <div id="" width="500" height="300" style="margin-bottom: 50px">
-            <h5>Information / Explanation</h5>
-          </div>
-        </div>
-        <div class="col-10" style="border-style: solid; height: 100%">
-          <div
-            id="LDA-network-diagram"
-            width="500"
-            height="300"
-            style="margin-bottom: 50px"
-          >
-            <h5>Bubble Chart</h5>
-          </div>
-          </div>
-        </div>
+         </div>
+      </nav>
+      <div class="row" style="display: flex; width: 100%">
+         <div class="col-4" style="border-style: solid; height: 100%">
+            <div id="country-div" style="margin-top: 23px">
+               <div
+                  id="feature-selection-horizontal-bar-chart"
+                  style="margin-bottom: 50px"
+                  >
+                  <h5>Bar Chart</h5>
+               </div>
+            </div>
+         </div>
+         <div class="col-8" style="border-style: solid; height: 100%">
+           
+            <div
+               id="LDA-network-diagram"
+               width="500"
+               height="300"
+               style="margin-bottom: 50px"
+               > 
+               <h5>Bubble Chart</h5>
+               <p>
+               Job Position:
+               <select onchange="render(this.options[this.selectedIndex].value);">
+                  <option value="all">All</option>
+                  <option value="nurse">Nurse</option>
+                  <option value="physician">Physician</option>
+               </select>
+            </p>
+             <svg id="chart" width="1000" height="600"></svg>
+            </div>
+         </div>
       </div>
-    </div>
-       <div id="my_dataviz" style="
-        visibility: visible;
-          position: absolute;
-          height: 350;
-          width: 350;
-          background-color: #eeeeee;
-          top: 170px;
-          right: 350px;
-          border-radius: 10px;
-        "
-      ></div>
+      </div>
+      </div>
+      <div id="my_dataviz" style="
+         visibility: hidden;
+         position: absolute;
+         height: 350;
+         width: 350;
+         background-color: #eeeeee;
+         top: 170px;
+         left: 350px;
+         border-radius: 10px;
+         "
+         ></div>
+   </body>
 
+   <script>
+    function render(_subset){
+		
+        //set the colors of the dots
+        var colors = ["#A84088","#F24B6A","#1FCECB","#FFDA66","#FF641C","#D94602","#008C7E","#02D9C3","#81BF63","#F2622E"];
 
-      </body>
+        var svg = d3.select("#chart");
+		svg.selectAll("g").remove();
 
+        //creating a function for initiating the lines
+        var curveLine = d3.line()
+            .x(function(d) {
+                return d.x
+            })
+            .y(function(d) {
+                return d.y
+            })
+            .curve(d3.curveBasis);
 
-<!-- Load d3-cloud -->
-<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
- <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://d3js.org/d3.v7.js"></script>
-    <script
+        //create a variable for the dataset
+        var chartData;
+
+        //create a function for drawing the lines, s is the starting id, e is the ending id
+        function drawPath(s,e){
+            var d = {source:{},target:{}};
+            for(var i=0;i<chartData.length;i++){
+                if(chartData[i].topic_id==s){
+                    d.source.x = chartData[i].x*15+50;
+                    d.source.y = chartData[i].y*10+50;
+                }else if(chartData[i].topic_id==e){
+                    d.target.x = chartData[i].x*15+50;
+                    d.target.y = chartData[i].y*10+50;
+                }
+            }
+            return curveLine([{x:d.source.x,y:d.source.y},
+                {x:d.target.x,y:d.target.y}])
+        }
+
+        let file_name = "bubble_chart.csv";
+        if(_subset == "nurse"){
+           file_name = "bubble_chart_nurse.csv";
+        }else if (_subset == "physician"){
+            file_name = "bubble_chart_physician.csv";}
+        else if (_subset == "all"){
+            file_name = "bubble_chart.csv";
+        }
+
+        //loading the data from the csv file
+        d3.csv(file_name).then(function(data){
+            // console.log(data)
+            chartData = data;
+            var pathArray = [];
+            //draw the lines
+            for(var i=0;i<data.length;i++){
+                var pa = []
+                for(var j=1;j<data[i].connection.length;j++){
+                    var size = 3;
+                    if(data[i].thick.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                        size = 5;
+                    }else if(data[i].thin.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                        size = 1
+                    }
+                    var path = svg.append("g").append("path")
+                        .style("fill","none")
+                        .style("stroke","transparent")
+                        .style("stroke-width",size)
+                        .attr("d", drawPath(data[i].connection[0],data[i].connection[j]))
+                    pa.push(path);
+                }
+                pathArray.push(pa);
+            }
+
+            //draw the nodes
+            svg.append("g").selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("cx",function(d){return d.x*15+50})
+                .attr("cy",function(d){return d.y*10+50})
+                .attr("r",50)
+                .attr("fill",function(d,i){
+                    return colors[i];
+                })
+                .on("mouseover",function(d,t){
+                    var i = Number(t.topic_id)-1;
+                    for(var m=0;m<pathArray.length;m++){
+                        for(var n=0;n<pathArray[m].length;n++){
+                            pathArray[m][n].style("stroke","transparent");
+                        }
+                    }
+                    for(var m=0;m<pathArray[i].length;m++){
+                        pathArray[i][m].style("stroke","#ff0000");
+                    }
+                })
+                .on("mouseout",function(d,t){
+                    for(var m=0;m<pathArray.length;m++){
+                        for(var n=0;n<pathArray[m].length;n++){
+                            pathArray[m][n].style("stroke","transparent");
+                        }
+                    }
+                })
+
+            //label the text
+            svg.append("g").selectAll("text")
+                .data(data)
+                .enter()
+                .append("text")
+                .attr("x",function(d){return d.x*15+50})
+                .attr("y",function(d){return d.y*10+50})
+                .attr("text-anchor","middle")
+                .attr("dominant-baseline","middle")
+                .attr("fill","#000")
+                .style("pointer-events","none")
+                .style("font-size",12)
+                .text(function(d){return d.topic})
+        });
+    }
+    render();
+</script>
+
+   <!-- Load d3-cloud -->
+   <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+   <script src="https://d3js.org/d3.v3.min.js"></script>
+   <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+   <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+   <script src="https://d3js.org/d3.v7.min.js"></script>
+   <script src="https://d3js.org/d3.v7.js"></script>
+   <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
       crossorigin="anonymous"
-    ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="module" src="horizontal-bar-chart.js"></script>
-    <script type="module" src="network-diagram.js"></script>
-    </body>
+      ></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script type="module" src="horizontal-bar-chart.js"></script>
+   </body>
 </html>

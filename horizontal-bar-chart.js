@@ -58,12 +58,14 @@ d3.csv(
     .attr("height", y.bandwidth())
     .attr("fill", "#69b3a2")
     .on("mouseover", function (event, d) {
-      //  console.log("In" + d.WordCloud);
-      update(d.WordCloud);
       $("#my_dataviz").css("visibility", "visible");
+      update(d.WordCloud);
+      console.log(d.WordCloud);
     })
     .on("mousemove", function (event, d) {})
-    .on("mouseleave", function (event, d) {});
+    .on("mouseleave", function (event, d) {
+      $("#my_dataviz").css("visibility", "hidden");
+    });
 
   // append the svg object to the body of the page
   var svg_wordcloud = d3
@@ -112,6 +114,8 @@ d3.csv(
     var update_data = data.split(" ").map(function (d) {
       return { text: d };
     });
+
+    console.log(update_data);
 
     var layout = d3.layout
       .cloud()
