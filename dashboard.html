@@ -28,13 +28,6 @@
       rel="stylesheet"
     />
     <link href="./index.css" rel="stylesheet" />
-
-    <style>
-      /* set the CSS */
-      .bar {
-        fill: steelblue;
-      }
-    </style>
   </head>
 
   <body>
@@ -89,8 +82,6 @@
       </div>
     </nav>
 
-    <div class="container" style="-top: 25px">
-
       <div class="row" style="display: flex; width: 100%">
           <div class="col-2" style="border-style: solid; height: 100%">
           <div id="" width="500" height="300" style="margin-bottom: 50px">
@@ -108,15 +99,6 @@
             </div>
           </div>
         </div>
-<!--
-
-        <div class="col-4" style="border-style: solid; height: 100%">
-          <div id="" width="500" height="300" style="margin-bottom: 50px">
-            <h5>Interactive part</h5>
-          </div>
-        </div>
-
--->
         </div>
           <div class="row" style="display: flex; width: 100%">
              <div class="col-2" style="border-style: solid; height: 100%">
@@ -137,14 +119,26 @@
         </div>
       </div>
     </div>
+       <div id="my_dataviz" style="
+        visibility: visible;
+          position: absolute;
+          height: 350;
+          width: 350;
+          background-color: #eeeeee;
+          top: 170px;
+          right: 350px;
+          border-radius: 10px;
+        "
+      ></div>
 
 
+      </body>
 
 
-
-</div>
-
-    <div id="my_tooltip"></div>
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+ <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://d3js.org/d3.v7.js"></script>
@@ -153,6 +147,7 @@
       integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
       crossorigin="anonymous"
     ></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="horizontal-bar-chart.js"></script>
     <script type="module" src="network-diagram.js"></script>

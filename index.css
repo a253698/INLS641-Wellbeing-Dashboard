@@ -2,39 +2,9 @@ body {
   font-size: bold;
   width:100%;
 }
-
-#price-boxchart-div {
-  padding: 20px;
-  text-align: center;
-}
-
-#worldmap-div {
-  padding: 20px;
-  text-align: center;
-}
-
-#circular-div {
-  /* padding: 20px; */
-  text-align: center;
-}
-
 .select-div {
   width: 300px;
   /* margin: auto; */
-}
-
-#stack-barchart-div {
-  padding: 20px;
-  text-align: center;
-}
-
-#country-div {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  /* padding: 20px; */
-  text-align: center;
-  justify-content: center;
 }
 
 #my-header-div {
