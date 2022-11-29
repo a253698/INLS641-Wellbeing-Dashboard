@@ -60,7 +60,7 @@
                      <a class="nav-link" href="dashboard.html">Well-being Dashboard</a>
                   </li>
                   <li class="nav-item" style="padding-right: 5px">
-                     <a class="nav-link" target="_blank" href="https://docs.google.com/presentation/d/155CNlTdd9ayou5nVS9iwMF76SZGp1mFU/edit?usp=sharing&ouid=100259541599824473242&rtpof=true&sd=true">Slide</a>
+                     <a class="nav-link" target="_blank" href="https://docs.google.com/presentation/d/1wepFyILpu1SfgatzzzEj8BAerwPxzATj/edit?usp=sharing&ouid=100259541599824473242&rtpof=true&sd=true">Slide</a>
                   </li>
                   <li class="navbar-brand" style="padding-left: 5px">
                      <a
@@ -98,7 +98,7 @@
             <div class="row" style="display: flex;">
                <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
                   <div class="row" style="display: flex; width: 100%">
-                     <h5 style="margin-top: 10px;">Data: </h5>
+                     <h5 style="margin-top: 10px;">Data </h5>
                      <h6 style="margin-top: 5px;">Survey Responses: </h6>
                      <h3 style=""> 420</h3>
                   </div>
@@ -118,7 +118,7 @@
                </div>
                <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
                   <h5 style="margin-top: 10px;margin-left: 10px">Burnout Rate</h5>
-                  <div id="burnout-nonburnout-piechart"></div>
+                  <div id="burnout-nonburnout-piechart" style="margin-left: 10px"></div>
                </div>
                <div class="col-5" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;width:46%;;height: 100%">
                   <div class="row">
@@ -135,7 +135,7 @@
                      </div>
                   </div>
                   <div id="clinical-position-barchart" style="visibility:visible;"></div>
-                <!--   <div id="gender-barchart"  style="visibility:hidden;"></div> -->
+                  <!--   <div id="gender-barchart"  style="visibility:hidden;"></div> -->
                </div>
             </div>
             <div class="row" style="display: flex; width: 100%; ">
@@ -147,13 +147,14 @@
                      style="margin-bottom: 50px"
                      >
                      <h5 style="margin-top: 5px; "> Topic Model from Well-Being Survey Responses </h5>
+                     <p>Each bubble is a topic and the connections drawn between topics indicate topical connections in terms of keywords overlap.</p>
                      <p>
                         Job Position:
                         <select onchange="render(this.options[this.selectedIndex].value);">
                            <option value="all">All</option>
                            <option value="nurse">Nurse</option>
                            <option value="resident">Resident</option>
-                           <option value="">ED Tech</option>
+                           <option value="edtech">ED Tech</option>
                            <option value="">Attending faculty</option>
                            <option value="">Physicist</option>
                            <option value="">Radiation Therapist</option>
@@ -165,7 +166,8 @@
             </div>
          </div>
       </div>
-      </div>      </div>
+      </div>      
+      </div>
       <div id="my_dataviz" style="
          visibility: hidden;
          position: absolute;
@@ -177,8 +179,10 @@
          border-radius: 10px;
          "
          >
-         <h5 style="margin-top: 5px;margin-left: 5px;">TFIDF</h5>
+         <h5 style="margin-top: 10px;margin-left: 10px;">TFIDF</h5>
       </div>
+      <div class="row" style="margin-top: -250px; margin-left: 20px;">               <img src="unc-logo.png" style=" width: 400px; height:auto;left: 0 px; bottom: 0 px;"></div>
+      <div class="row"  style="margin-top: -330px;margin-left: 20px;">               <img src="well-being-logo.png" style=" width: 400px; height:auto;left: 0 px; bottom: 0 px;"></div>
    </body>
    <script>
       function render(_subset){
@@ -315,6 +319,6 @@
    <script type="module" src="horizontal-bar-chart.js"></script>
    <script type="module" src="burnout-nonburnout-piechart.js"></script>
    <script type="module" src="clinical-position-barchart.js"></script>
-    <script type="module" src="gender-barchart.js"></script>
+   <script type="module" src="gender-barchart.js"></script>
    </body>
 </html>
