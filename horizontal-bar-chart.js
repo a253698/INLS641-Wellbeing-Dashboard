@@ -101,7 +101,7 @@ d3.csv(
       .enter()
       .append("text")
       .style("font-size", 15)
-      .style("fill", "#d5896f")
+      .style("fill", "#b79492")
       .attr("text-anchor", "middle")
       .style("font-family", "Impact")
       .attr("transform", function (d) {
