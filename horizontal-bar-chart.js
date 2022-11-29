@@ -1,6 +1,6 @@
 // set the dimensions and margins of the bar chart
 const margin = { top: 5, right: 5, bottom: 30, left: 150 },
-  width = 400 - margin.left - margin.right,
+  width = 350 - margin.left - margin.right,
   height = 600 - margin.top - margin.bottom;
 
 // set the dimensions and margins of the word cloud
@@ -19,7 +19,7 @@ const svg = d3
 
 // Parse the Data
 d3.csv(
-  "https://raw.githubusercontent.com/a253698/INLS641-Wellbeing-Dashboard/main/ml.csv"
+  "https://raw.githubusercontent.com/a253698/INLS641-Wellbeing-Dashboard/main/bar-chart-data.csv"
 ).then(function (data) {
   // Add X axis
   const x = d3.scaleLinear().domain([0, 0.1]).range([0, width]);
@@ -56,7 +56,7 @@ d3.csv(
     .attr("y", (d) => y(d.Feature))
     .attr("width", (d) => x(d.FeatureImportance))
     .attr("height", y.bandwidth())
-    .attr("fill", "#69b3a2")
+    .attr("fill", "#e29578")
     .on("mouseover", function (event, d) {
       $("#my_dataviz").css("visibility", "visible");
       update(d.WordCloud);
@@ -90,14 +90,18 @@ d3.csv(
       .append("g")
       .attr(
         "transform",
-        "translate(" + layout.size()[0] / 2 + "," + layout.size()[0] / 2 + ")"
+        "translate(" +
+          layout.size()[0] / 1.5 +
+          "," +
+          layout.size()[0] / 1.5 +
+          ")"
       )
       .selectAll("text")
       .data(data)
       .enter()
       .append("text")
-      .style("font-size", 20)
-      .style("fill", "#69b3a2")
+      .style("font-size", 15)
+      .style("fill", "#d5896f")
       .attr("text-anchor", "middle")
       .style("font-family", "Impact")
       .attr("transform", function (d) {
@@ -119,9 +123,9 @@ d3.csv(
 
     var layout = d3.layout
       .cloud()
-      .size([width, height])
+      .size([width_wordcloud, height_wordcloud])
       .words(update_data)
-      .padding(5) //space between words
+      .padding(2) //space between words
       .rotate(0) // rotation angle in degrees
       .fontSize(20) // font size of words
       .on("end", draw);

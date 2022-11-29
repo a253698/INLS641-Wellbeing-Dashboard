@@ -80,173 +80,224 @@
             </div>
          </div>
       </nav>
-      <div class="row" style="display: flex; width: 100%">
-         <div class="col-4" style="border-style: solid; height: 100%">
+      <!--
+
+               #F8F4E
+      -->
+      
+
+
+      <div class="row" style="display: flex; width:100%;">
+         <div class="col-4" style="margin-left: 30px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef; height: 100%; width:30%;">
             <div id="country-div" style="margin-top: 23px">
                <div
                   id="feature-selection-horizontal-bar-chart"
-                  style="margin-bottom: 50px"
+                  style="margin-bottom: 50px;margin-left: 10px"
                   >
-                  <h5>Bar Chart</h5>
+                  <h5>Top Critical Factors</h5>
                </div>
             </div>
          </div>
-         <div class="col-8" style="border-style: solid; height: 100%">
-           
-            <div
-               id="LDA-network-diagram"
-               width="500"
-               height="300"
-               style="margin-bottom: 50px"
-               > 
-               <h5>Bubble Chart</h5>
-               <p>
-               Job Position:
-               <select onchange="render(this.options[this.selectedIndex].value);">
-                  <option value="all">All</option>
-                  <option value="nurse">Nurse</option>
-                  <option value="physician">Physician</option>
-               </select>
-            </p>
-             <svg id="chart" width="1000" height="600"></svg>
+         <div class="col-8">
+            <div class="row" style="display: flex;">
+               <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
+                <div class="row" style="display: flex; width: 100%">
+                  <h5 style="margin-top: 10px;">Data: </h5>
+                  <h6 style="margin-top: 5px;">Survey Responses: </h6>
+                  <h3 style=""> 420</h3>
+                  </div>
+                  <h6 style="margin-top: 14px;">Comments: </h6>
+                  <h3 style=""> 1072</h3>
+                  <div  class="row" style="display: flex; width: 100%">
+                     <div class="col-6" style="height : 100%">
+                        <h6 style="margin-top: 10px;">Burnout: </h6>
+                        <h5 style="margin-top: 5px;margin-left: 10px"> 642</h5>
+                     </div>
+                     <div class="col-6" style="height: 100%">
+                        <h6 style="margin-top: 10px;"">No_Burnout: </h6>
+                        <h5 style="margin-top: 5px;margin-left: 10px"> 431</h5>
+                     </div>
+                  </div>
+                  <div id=""></div>
+               </div>
+               <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
+                  <h5 style="margin-top: 10px;margin-left: 10px">Burnout Rate</h5>
+                  <div id="burnout-nonburnout-piechart"></div>
+               </div>
+               <div class="col-5" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;width:46%;;height: 100%">
+                  <div class="row">
+                     <div class="col-6">
+                        <h5 style="margin-top: 10px;margin-left: 10px">Demographic Data</h5>
+                     </div>
+                     <div class="col-5" >
+                        <select  name="cars" id="cars" style="margin-top: 15px;margin-left: 10p;">
+                           <option value="volvo">Clinical position</option>
+                           <option value="saab">Gender</option>
+                           <option value="opel">Year in position</option>
+                           <option value="audi">Year in current position</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div id="clinical-position-barchart"></div>
+               </div>
+            </div>
+            <div class="row" style="display: flex; width: 100%; ">
+               <div id="country-div" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;width:100%;;height: 80%">
+                  <div
+                     id="LDA-network-diagram"
+                     width="500"
+                     height="150"
+                     style="margin-bottom: 50px"
+                     >
+                     <h5 style="margin-top: 5px; "> Topic Model from Well-Being Survey Responses </h5>
+                     <p>
+                        Job Position:
+                        <select onchange="render(this.options[this.selectedIndex].value);">
+                           <option value="all">All</option>
+                           <option value="nurse">Nurse</option>
+                           <option value="physician">Physician</option>
+                        </select>
+                     </p>
+                     <svg id="chart" width="1000" height="600"></svg>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-      </div>
-      </div>
+      </div>      </div>
       <div id="my_dataviz" style="
          visibility: hidden;
          position: absolute;
-         height: 350;
+         height: 400;
          width: 350;
          background-color: #eeeeee;
          top: 170px;
          left: 350px;
          border-radius: 10px;
          "
-         ></div>
+         >
+         <h5 style="margin-top: 5px;margin-left: 5px;">TFIDF</h5>
+      </div>
    </body>
-
    <script>
-    function render(_subset){
-		
-        //set the colors of the dots
-        var colors = ["#A84088","#F24B6A","#1FCECB","#FFDA66","#FF641C","#D94602","#008C7E","#02D9C3","#81BF63","#F2622E"];
-
-        var svg = d3.select("#chart");
-		svg.selectAll("g").remove();
-
-        //creating a function for initiating the lines
-        var curveLine = d3.line()
-            .x(function(d) {
-                return d.x
-            })
-            .y(function(d) {
-                return d.y
-            })
-            .curve(d3.curveBasis);
-
-        //create a variable for the dataset
-        var chartData;
-
-        //create a function for drawing the lines, s is the starting id, e is the ending id
-        function drawPath(s,e){
-            var d = {source:{},target:{}};
-            for(var i=0;i<chartData.length;i++){
-                if(chartData[i].topic_id==s){
-                    d.source.x = chartData[i].x*15+50;
-                    d.source.y = chartData[i].y*10+50;
-                }else if(chartData[i].topic_id==e){
-                    d.target.x = chartData[i].x*15+50;
-                    d.target.y = chartData[i].y*10+50;
-                }
-            }
-            return curveLine([{x:d.source.x,y:d.source.y},
-                {x:d.target.x,y:d.target.y}])
-        }
-
-        let file_name = "bubble_chart.csv";
-        if(_subset == "nurse"){
-           file_name = "bubble_chart_nurse.csv";
-        }else if (_subset == "physician"){
-            file_name = "bubble_chart_physician.csv";}
-        else if (_subset == "all"){
-            file_name = "bubble_chart.csv";
-        }
-
-        //loading the data from the csv file
-        d3.csv(file_name).then(function(data){
-            // console.log(data)
-            chartData = data;
-            var pathArray = [];
-            //draw the lines
-            for(var i=0;i<data.length;i++){
-                var pa = []
-                for(var j=1;j<data[i].connection.length;j++){
-                    var size = 3;
-                    if(data[i].thick.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
-                        size = 5;
-                    }else if(data[i].thin.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
-                        size = 1
-                    }
-                    var path = svg.append("g").append("path")
-                        .style("fill","none")
-                        .style("stroke","transparent")
-                        .style("stroke-width",size)
-                        .attr("d", drawPath(data[i].connection[0],data[i].connection[j]))
-                    pa.push(path);
-                }
-                pathArray.push(pa);
-            }
-
-            //draw the nodes
-            svg.append("g").selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("cx",function(d){return d.x*15+50})
-                .attr("cy",function(d){return d.y*10+50})
-                .attr("r",50)
-                .attr("fill",function(d,i){
-                    return colors[i];
-                })
-                .on("mouseover",function(d,t){
-                    var i = Number(t.topic_id)-1;
-                    for(var m=0;m<pathArray.length;m++){
-                        for(var n=0;n<pathArray[m].length;n++){
-                            pathArray[m][n].style("stroke","transparent");
-                        }
-                    }
-                    for(var m=0;m<pathArray[i].length;m++){
-                        pathArray[i][m].style("stroke","#ff0000");
-                    }
-                })
-                .on("mouseout",function(d,t){
-                    for(var m=0;m<pathArray.length;m++){
-                        for(var n=0;n<pathArray[m].length;n++){
-                            pathArray[m][n].style("stroke","transparent");
-                        }
-                    }
-                })
-
-            //label the text
-            svg.append("g").selectAll("text")
-                .data(data)
-                .enter()
-                .append("text")
-                .attr("x",function(d){return d.x*15+50})
-                .attr("y",function(d){return d.y*10+50})
-                .attr("text-anchor","middle")
-                .attr("dominant-baseline","middle")
-                .attr("fill","#000")
-                .style("pointer-events","none")
-                .style("font-size",12)
-                .text(function(d){return d.topic})
-        });
-    }
-    render();
-</script>
-
+      function render(_subset){
+      
+          //set the colors of the dots
+          var colors = ["#A84088","#F24B6A","#1FCECB","#FFDA66","#FF641C","#D94602","#008C7E","#02D9C3","#81BF63","#F2622E"];
+      
+          var svg = d3.select("#chart");
+      svg.selectAll("g").remove();
+      
+          //creating a function for initiating the lines
+          var curveLine = d3.line()
+              .x(function(d) {
+                  return d.x
+              })
+              .y(function(d) {
+                  return d.y
+              })
+              .curve(d3.curveBasis);
+      
+          //create a variable for the dataset
+          var chartData;
+      
+          //create a function for drawing the lines, s is the starting id, e is the ending id
+          function drawPath(s,e){
+              var d = {source:{},target:{}};
+              for(var i=0;i<chartData.length;i++){
+                  if(chartData[i].topic_id==s){
+                      d.source.x = chartData[i].x*15+50;
+                      d.source.y = chartData[i].y*10+50;
+                  }else if(chartData[i].topic_id==e){
+                      d.target.x = chartData[i].x*15+50;
+                      d.target.y = chartData[i].y*10+50;
+                  }
+              }
+              return curveLine([{x:d.source.x,y:d.source.y},
+                  {x:d.target.x,y:d.target.y}])
+          }
+      
+          let file_name = "bubble_chart.csv";
+          if(_subset == "nurse"){
+             file_name = "bubble_chart_nurse.csv";
+          }else if (_subset == "physician"){
+              file_name = "bubble_chart_physician.csv";}
+          else if (_subset == "all"){
+              file_name = "bubble_chart.csv";
+          }
+      
+          //loading the data from the csv file
+          d3.csv(file_name).then(function(data){
+              // console.log(data)
+              chartData = data;
+              var pathArray = [];
+              //draw the lines
+              for(var i=0;i<data.length;i++){
+                  var pa = []
+                  for(var j=1;j<data[i].connection.length;j++){
+                      var size = 3;
+                      if(data[i].thick.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                          size = 5;
+                      }else if(data[i].thin.indexOf(data[i].connection[0]+data[i].connection[j])>-1){
+                          size = 1
+                      }
+                      var path = svg.append("g").append("path")
+                          .style("fill","none")
+                          .style("stroke","transparent")
+                          .style("stroke-width",size)
+                          .attr("d", drawPath(data[i].connection[0],data[i].connection[j]))
+                      pa.push(path);
+                  }
+                  pathArray.push(pa);
+              }
+      
+              //draw the nodes
+              svg.append("g").selectAll("circle")
+                  .data(data)
+                  .enter()
+                  .append("circle")
+                  .attr("cx",function(d){return d.x*15+50})
+                  .attr("cy",function(d){return d.y*10+50})
+                  .attr("r",50)
+                  .attr("fill",function(d,i){
+                      return colors[i];
+                  })
+                  .on("mouseover",function(d,t){
+                      var i = Number(t.topic_id)-1;
+                      for(var m=0;m<pathArray.length;m++){
+                          for(var n=0;n<pathArray[m].length;n++){
+                              pathArray[m][n].style("stroke","transparent");
+                          }
+                      }
+                      for(var m=0;m<pathArray[i].length;m++){
+                          pathArray[i][m].style("stroke","#ff0000");
+                      }
+                  })
+                  .on("mouseout",function(d,t){
+                      for(var m=0;m<pathArray.length;m++){
+                          for(var n=0;n<pathArray[m].length;n++){
+                              pathArray[m][n].style("stroke","transparent");
+                          }
+                      }
+                  })
+      
+              //label the text
+              svg.append("g").selectAll("text")
+                  .data(data)
+                  .enter()
+                  .append("text")
+                  .attr("x",function(d){return d.x*15+50})
+                  .attr("y",function(d){return d.y*10+50})
+                  .attr("text-anchor","middle")
+                  .attr("dominant-baseline","middle")
+                  .attr("fill","#000")
+                  .style("pointer-events","none")
+                  .style("font-size",12)
+                  .text(function(d){return d.topic})
+          });
+      }
+      render();
+   </script>
    <!-- Load d3-cloud -->
    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
    <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -261,5 +312,7 @@
       ></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <script type="module" src="horizontal-bar-chart.js"></script>
+   <script type="module" src="burnout-nonburnout-piechart.js"></script>
+   <script type="module" src="clinical-position-barchart.js"></script>
    </body>
 </html>
