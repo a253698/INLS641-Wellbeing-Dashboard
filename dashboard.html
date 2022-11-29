@@ -81,12 +81,8 @@
          </div>
       </nav>
       <!--
-
-               #F8F4E
-      -->
-      
-
-
+         #F8F4E
+         -->
       <div class="row" style="display: flex; width:100%;">
          <div class="col-4" style="margin-left: 30px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef; height: 100%; width:30%;">
             <div id="country-div" style="margin-top: 23px">
@@ -101,10 +97,10 @@
          <div class="col-8">
             <div class="row" style="display: flex;">
                <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
-                <div class="row" style="display: flex; width: 100%">
-                  <h5 style="margin-top: 10px;">Data: </h5>
-                  <h6 style="margin-top: 5px;">Survey Responses: </h6>
-                  <h3 style=""> 420</h3>
+                  <div class="row" style="display: flex; width: 100%">
+                     <h5 style="margin-top: 10px;">Data: </h5>
+                     <h6 style="margin-top: 5px;">Survey Responses: </h6>
+                     <h3 style=""> 420</h3>
                   </div>
                   <h6 style="margin-top: 14px;">Comments: </h6>
                   <h3 style=""> 1072</h3>
@@ -130,11 +126,11 @@
                         <h5 style="margin-top: 10px;margin-left: 10px">Demographic Data</h5>
                      </div>
                      <div class="col-5" >
-                        <select  name="cars" id="cars" style="margin-top: 15px;margin-left: 10p;">
-                           <option value="volvo">Clinical position</option>
-                           <option value="saab">Gender</option>
-                           <option value="opel">Year in position</option>
-                           <option value="audi">Year in current position</option>
+                        <select  name="demographicdata" id="cars" style="margin-top: 15px;margin-left: 10p;">
+                           <option value="clinicalposition">Clinical position</option>
+                           <option value="gender">Gender</option>
+                           <option value="year">Year in position</option>
+                           <option value="currentyear">Year in current position</option>
                         </select>
                      </div>
                   </div>
@@ -155,7 +151,11 @@
                         <select onchange="render(this.options[this.selectedIndex].value);">
                            <option value="all">All</option>
                            <option value="nurse">Nurse</option>
-                           <option value="physician">Physician</option>
+                           <option value="resident">Resident</option>
+                           <option value="">ED Tech</option>
+                           <option value="">Attending faculty</option>
+                           <option value="">Physicist</option>
+                           <option value="">Radiation Therapist</option>
                         </select>
                      </p>
                      <svg id="chart" width="1000" height="600"></svg>
@@ -183,7 +183,7 @@
       function render(_subset){
       
           //set the colors of the dots
-          var colors = ["#A84088","#F24B6A","#1FCECB","#FFDA66","#FF641C","#D94602","#008C7E","#02D9C3","#81BF63","#F2622E"];
+          var colors = ["#eee4e1","#b2967d","#e6beae","#c0b9dd","#ded9e2","#9f9aa4","#e7cfcd","#cfd8d7","#b5c9c3","#cab1bd"];
       
           var svg = d3.select("#chart");
       svg.selectAll("g").remove();
@@ -220,8 +220,8 @@
           let file_name = "bubble_chart.csv";
           if(_subset == "nurse"){
              file_name = "bubble_chart_nurse.csv";
-          }else if (_subset == "physician"){
-              file_name = "bubble_chart_physician.csv";}
+          }else if (_subset == "resident"){
+              file_name = "bubble_chart_resident.csv";}
           else if (_subset == "all"){
               file_name = "bubble_chart.csv";
           }
@@ -270,7 +270,7 @@
                           }
                       }
                       for(var m=0;m<pathArray[i].length;m++){
-                          pathArray[i][m].style("stroke","#ff0000");
+                          pathArray[i][m].style("stroke","#9999a1");
                       }
                   })
                   .on("mouseout",function(d,t){

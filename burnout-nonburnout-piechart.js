@@ -41,7 +41,7 @@ svg
     return color(d.data[0]);
   })
   .attr("stroke", "black")
-  .style("stroke-width", "2px")
+  .style("stroke-width", "0.5px")
   .style("opacity", 0.7);
 
 // Now add the annotation. Use the centroid method to get the best coordinates

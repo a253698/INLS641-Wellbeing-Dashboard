@@ -1,8 +1,10 @@
 ﻿topic_id,topic,x,y,connection,thick,normal,thin
-1,Nurse,27.2802,44.644,123467,14,,"12,13,14,16,17"
-2,Patient load,30.2687,39.0103,213,23,,21
-3,Stress,1.6688,26.7841,356,,"35,36",
-4,Documentation,16.4362,1.115,4156,"45, 46",41,
-5,Short staffed,52.9139,27.7749,5741,54,57,51
-6,Inpatient service,30.4443,26.949,635,63,,65
-7,salary,19.7144,42.889,7158,75,78,71
+1,Insurence,39,27,126,12,16,
+2,Communication load,40,9,,,,
+3,Recognition,5,1,3256,32,35,36
+4,Teammate,14,39,41,41,,
+5,Certification,17,2,51,,51,
+6,Help & Support,45,28,6123,63,61,62
+7,COVID,33,22,,,,
+8,Job Control,1,34,,,,
+9,Waiting Room,10,12,95,95,,
