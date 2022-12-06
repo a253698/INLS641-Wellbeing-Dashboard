@@ -36,7 +36,7 @@
          <div class="container">
             <a
                class="navbar-brand"
-               href="index.html"
+               href=""
                style="font-family: 'Supermercado One', cursive"
                >INLS641 Final Project</a
                >
@@ -53,9 +53,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ms-auto">
-                  <li class="nav-item" style="padding-right: 5px">
+
+                  <!--
+  <li class="nav-item" style="padding-right: 5px">
                      <a class="nav-link" href="index.html">Report</a>
                   </li>
+                  -->
+                
                   <li class="nav-item" style="padding-right: 5px">
                      <a class="nav-link" href="dashboard.html">Well-being Dashboard</a>
                   </li>
@@ -98,10 +102,14 @@
             <div class="row" style="display: flex;">
                <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
                   <div class="row" style="display: flex; width: 100%">
-                     <h5 style="margin-top: 10px;">Data </h5>
-                     <h6 style="margin-top: 5px;">Survey Responses: </h6>
+                     <h5 style="margin-top: 12px;">Survey Responses: </h5>
                      <h3 style=""> 420</h3>
                   </div>
+                   <div id="burnout-nonburnout-piechart" style="margin-left: 10px"></div>
+                  <div id=""></div>
+               </div>
+               <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
+                  <h5 style="margin-top: 10px;margin-left: 10px">Burnout Rate</h5>
                   <h6 style="margin-top: 14px;">Comments: </h6>
                   <h3 style=""> 1072</h3>
                   <div  class="row" style="display: flex; width: 100%">
@@ -114,11 +122,6 @@
                         <h5 style="margin-top: 5px;margin-left: 10px"> 431</h5>
                      </div>
                   </div>
-                  <div id=""></div>
-               </div>
-               <div class="col-3" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;height: 100%">
-                  <h5 style="margin-top: 10px;margin-left: 10px">Burnout Rate</h5>
-                  <div id="burnout-nonburnout-piechart" style="margin-left: 10px"></div>
                </div>
                <div class="col-5" style="margin-left: 5px;margin-top: 5px; border-style: solid; border-radius: 25px;border-width: 4px; border-color: #e9ecef;width:46%;;height: 100%">
                   <div class="row">
@@ -126,12 +129,16 @@
                         <h5 style="margin-top: 10px;margin-left: 10px">Demographic Data</h5>
                      </div>
                      <div class="col-5" >
-                        <select  name="demographicdata" id="cars" style="margin-top: 15px;margin-left: 10p;">
+                        <!--
+
+ <select  name="demographicdata" id="cars" style="margin-top: 15px;margin-left: 10p;">
                            <option value="clinicalposition">Clinical position</option>
                            <option value="gender">Gender</option>
                            <option value="year">Year in position</option>
                            <option value="currentyear">Year in current position</option>
                         </select>
+                        -->
+                       
                      </div>
                   </div>
                   <div id="clinical-position-barchart" style="visibility:visible;"></div>
@@ -154,10 +161,16 @@
                            <option value="all">All</option>
                            <option value="nurse">Nurse</option>
                            <option value="resident">Resident</option>
-                           <option value="edtech">ED Tech</option>
-                           <option value="">Attending faculty</option>
+                          
+
+                           <!--
+                               <option value="edtech">ED Tech</option>
+<option value="">Attending faculty</option>
                            <option value="">Physicist</option>
                            <option value="">Radiation Therapist</option>
+
+                           -->
+                           
                         </select>
                      </p>
                      <svg id="chart" width="1000" height="600"></svg>
@@ -181,9 +194,11 @@
          >
          <h5 style="margin-top: 10px;margin-left: 10px;">TFIDF</h5>
       </div>
+      <!--
       <div class="row" style="margin-top: -250px; margin-left: 20px;">               <img src="unc-logo.png" style=" width: 400px; height:auto;left: 0 px; bottom: 0 px;"></div>
       <div class="row"  style="margin-top: -330px;margin-left: 20px;">               <img src="well-being-logo.png" style=" width: 400px; height:auto;left: 0 px; bottom: 0 px;"></div>
-   </body>
+      -->
+      </body>
    <script>
       function render(_subset){
       
@@ -223,6 +238,7 @@
           }
       
           let file_name = "bubble_chart.csv";
+
           if(_subset == "nurse"){
              file_name = "bubble_chart_nurse.csv";
           }else if (_subset == "resident"){
