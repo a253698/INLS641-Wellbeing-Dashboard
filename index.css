@@ -19,3 +19,7 @@ body {
   background-size: cover;
   position: relative;
 }
+
+table {
+  border: 1px solid black;
+}

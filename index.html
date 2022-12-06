@@ -56,9 +56,534 @@
                 </div>
             </div>
             <hr/>
+  <div class="row justify-content-center">
+              <div class="col-md-auto" style="width: 70%;">
+
+                <p><i>During from Dec. 9, 2021, to Jan. 24, 2022, nearly 2,500 U.S. physicians responded to a survey by researchers from the AMA, the Mayo Clinic, the Stanford University School of Medicine, and the University of Colorado School of Medicine. And researchers found that, overall, 62.8% of physicians had at least one manifestation of burnout in 2021, and the growing trends were consistent across nearly all specialties. Burnout among health care professionals has reached global epidemic levels and has been further exacerbated by the COVID-19 pandemic. The University of North Carolina, Chapel Hill (UNC) School of Medicine, Department of Radiation Oncology, and Department of Medical Engineering (DHE) continue to research and develop the infrastructure and culture for high reliability and well-being of medical personnel in the hospital system.
+                </i></p>
+                <h4>Introduction</h4>
+                <p>
+The COVID-19 pandemic has exacerbated pre-existing problems in the healthcare delivery system and has taken a significant toll on the U.S. physician workforce. Given the association between physician burnout and reduced quality of care, turnover, and workload, these findings suggest that ongoing efforts to mitigate physician burnout are critical to the U.S. healthcare system (1). Burnout rates among U.S. physicians rose sharply during the first two years of the COVID-19 pandemic, according to a new study, “Changes in Burnout and Satisfaction With Work-Life Integration in Physicians During the First 2 Years of the COVID-19 Pandemic,” published in Mayo Clinic Proceedings (2). The COVID-19 pandemic has placed enormous mental and physical stress on clinicians and has significantly exacerbated prominent concerns about clinician health and burnout. Awareness of burnout among healthcare clinicians has increased over the past decade. Before COVID-19, more than 50% of US clinicians reported symptoms of burnout, "a syndrome characterized by high levels of emotional exhaustion (A state of emotional fatigue and burnout due to accumulated stress in your personal or work life, or both, can lead to a high risk of burnout.), high levels of depersonalization (which is the lack of empathy for or negative attitudes toward patients, which is also high in people at risk of bur), and low personal achievement(low in people at risk of burnout). (3)
+                </p>
+
+                <p>Clinician burnout has wide-ranging consequences including, but not limited to, increased medical errors, lower patient satisfaction, impaired quality of care, lack of motivation, absenteeism, low morale, turnover, lost productivity, and even up medical error, resulting in reduced quality of care, and potentially ending up in malpractice suits with substantial costs for caregivers and hospitals (4). Therefore, there is an urgent need to examine the key factors contributing to clinician burnout during the COVID-19 pandemic.</p>
+
+                <p>
+In this project, our team goal is by utilizing an interpretable machine learning approach (Feature Selection) and text mining approaches (Topic Modeling), We hope by utilizing interpretable machine learning methods and text mining methods, we first apply machine learning to identify critical factors that most predict burnout among clinicians in the United States using binary feature selection and feature importance methods for targeted provide evidence for innovative interventions to reduce burnout among US clinicians' burnout and improve quality of care. Then with the features selected by the best performance model, filtered the top-ranked feature importance out of the 21 workplace stressor categorized by the NAM systems-based framework (5) and applied topic modeling and TFIDF to have a deeper understanding of the quantitative data of each burnout factor. Topic modeling enables you to look at multiple topics and organize, understand, and summarize them at scale; in other words, categorize themes without reading hundreds of survey responses . With the analysis result, valuable insights are uncovered (top burnout factors among healthcare professionals and most comment mention factors among each/some/top factors), we developed the Well-being dashboard to share with the director of the Well-Being Program and leadership teams, hoping to drive further system-level changes and improvements for healthcare professionals. Our target users are leadership group in UNC School of Medicine, Department of Radiation Oncology, Department of Healthcare Engineering. Within our design, our project allows these users to answer. By using our design, we can help our target users answer and understand the mental health status of the tested people. We can also help the leadership to better arrange and adjust the follow-up works. 
+                </p>
+                <p>Specifically, this tool was designed to answer the following questions:</p>
+                <p>
+<ol>
+  <li>
+    How many people (Demographic data) have participated in the well-being program of the survey study.
+  </li>
+    <li>
+    What critical factors are mostly used to predict burnout among clinicians in the United States.
+  </li>
+  <li>What are the major topics and sub-topics being reported in the well-being survey.
+</li>
+  <li>How strongly are these sub-topics related, if at all?
+</li>
+  <li>What are the different topics discussed based on different positions?
+</li>
+</ol>
+
+                </p>
+
+                  <h4>Data Collection</h4>
+                  <p>The data used in this study is collected through ten well-being deep dive projects. We created a composite 25 item survey and extracted four demographic data, including clinical position, gender, race, and marital status. Burnout is measured using the 2-item Maslach Burnout Inventory (MBI) and the questionnaire was developed based on the severity ratings of 21 evidence-based work system factors based on the National Academic of Medicine system-based framework  (5). The composite survey was designed and sent out through Qualtrics Online Survey Software. It was administered to 589 healthcare professionals (HCPs) in different large medical centers, including UNC School of Medicine, UNC Health, UNC REX Healthcare, departments across radiation oncology, primary care, surgery departments, and emergency department. All participants received an anonymous link in which participants were only able to answer once for the survey. The survey was administered between November 2020 and August 2022, and in total we collected 420 responses. The characteristics of survey respondents are shown in Table 1, the job position of healthcare professionals include nurses, physicians, residents, pharmacists, therapists, physicists, non-clinician, and participants that prefer not to disclose. After data cleaning, for feature selection, a total of 419 survey responses were used in the analysis. Due to the balanced amount of burnout and without burnout data (With burnout = 175 (58.13%) and Without burnout = 243 (41.86%)), Synthetic Minority Oversampling Technique (SMOTE) (Chawla et al. 2002) is not performed.</p>
+<div class="row justify-content-center">
+    <div class="col-auto">
+      <table class="table table-responsive">
+
+  <tr>
+    <td>Feature </td>
+    <td> </td>
+    <td>Datatype </td>
+    <td>No. (%) </td>
+  </tr>
+  <tr>
+    <td>Burnout </td>
+    <td> </td>
+    <td>Categorical </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>With burnout </td>
+    <td> </td>
+    <td>175 (58.13%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Without burnout </td>
+    <td></td>
+    <td>243 (41.86%) </td>
+  </tr>
+  <tr>
+    <td>Clinical position </td>
+    <td> </td>
+    <td>Categorical </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Nurses </td>
+    <td> </td>
+    <td>133 (31.81%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Non-clinician  </td>
+    <td></td>
+    <td>120 (28.70%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Physician  </td>
+    <td></td>
+    <td>113 (27.03%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Resident </td>
+    <td></td>
+    <td>39 (9.30%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prefer not to disclose  </td>
+    <td></td>
+    <td>6 (1.43%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Pharmacist  </td>
+    <td></td>
+    <td>3 (0.71%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Therapist </td>
+    <td></td>
+    <td>3 (0.71%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Physicist </td>
+    <td></td>
+    <td>1 (0.23%) </td>
+  </tr>
+  <tr>
+    <td>Gender </td>
+    <td> </td>
+    <td>Categorical </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Male </td>
+    <td> </td>
+    <td>88 (21.05%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Female  </td>
+    <td></td>
+    <td>289 (69.13%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Non-binary </td>
+    <td></td>
+    <td>6 (1.43%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Transgender male  </td>
+    <td></td>
+    <td>4 (0.95%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Transgender female  </td>
+    <td></td>
+    <td>3 (0.71%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prefer to self-describe </td>
+    <td></td>
+    <td>3 (0.71%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prefer not to disclose </td>
+    <td></td>
+    <td>25 (5.98%) </td>
+  </tr>
+  <tr>
+    <td>Marital status </td>
+    <td> </td>
+    <td>Categorical </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Single </td>
+    <td> </td>
+    <td>82 (19.61%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Married  </td>
+    <td></td>
+    <td>253 (60.52%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Divorced  </td>
+    <td></td>
+    <td>22 (5.26%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Separated  </td>
+    <td></td>
+    <td>9 (2.15%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Widowed  </td>
+    <td></td>
+    <td>7 (1.67%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Other </td>
+    <td></td>
+    <td>9 (2.15%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Prefer not to disclose </td>
+    <td></td>
+    <td>36 (8.61%) </td>
+  </tr>
+  <tr>
+    <td>Work system factors </td>
+    <td> </td>
+    <td>Ordinal </td>
+    <td> </td>
+  </tr>
+  <tr>
+    <td> Job demands  </td>
+    <td>Excessive workload </td>
+    <td> </td>
+    <td>334 79.90(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Unmanageable work schedules  </td>
+    <td></td>
+    <td>157 37.56(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Inadequate staffing </td>
+    <td></td>
+    <td>309 73.92(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Time pressure  </td>
+    <td></td>
+    <td>282 67.46(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Inefficient workflows </td>
+    <td></td>
+    <td>279 66.75(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Interruptions and disruptions  </td>
+    <td></td>
+    <td>265 63.40(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Inadequate technology </td>
+    <td></td>
+    <td>179 42.82(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Moral distress  </td>
+    <td></td>
+    <td>152 36.36(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Patient factors </td>
+    <td></td>
+    <td>185 44.26(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Administrative burden </td>
+    <td></td>
+    <td>223 53.35(%) </td>
+  </tr>
+  <tr>
+    <td>Job resources  </td>
+    <td>Lack of recognition for quality improvement activities </td>
+    <td> </td>
+    <td>171 40.91(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Lack of dedicated time </td>
+    <td></td>
+    <td>207 49.52(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Lack of support for research  </td>
+    <td></td>
+    <td>140 33.49(%) </td>
+  </tr>
+  <tr>
+    <td> </td>
+    <td>Professional relationships  </td>
+    <td></td>
+    <td>148 35.41(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Organizational culture </td>
+    <td></td>
+    <td>182 43.54(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Physical work environment  </td>
+    <td></td>
+    <td>160 38.28(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Values and expectations  </td>
+    <td></td>
+    <td>184 44.02(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Job control </td>
+    <td></td>
+    <td>160 38.28(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Intrinsic motivation  </td>
+    <td></td>
+    <td>152 36.36(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Extrinsic motivation </td>
+    <td></td>
+    <td>182 43.54(%) </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Work-life integration </td>
+    <td></td>
+    <td>202 48.33(%) </td>
+  </tr>
+</table>
+</div>
+</div>
+ 
+                  <h4>Design</h4>
+ <h6><i>Intial Design</i></h6>
+ <div class="text-center">
+ <img class="" width="800" height=auto alt="Picture1" src="https://user-images.githubusercontent.com/32476235/205839773-71836fb9-8741-4bdd-95d0-23a1a4ef9afe.png">
+ </div>
+ <p>Our design was divided into two parts (left part and right part). The left part visualizes the results of feature selection. We utilized machine learning approaches and with the ranking of each feature’s feature importance, we visualize the top 10 results with a bar chart. When our target uses mouse over these results are displayed by a pop-up window. The pop-up window includes information in two parts (the upper part and the lower part). The upper part includes words/phrases related to the clicked results. The font size of the words/phrases that appear depends on the relevance. The content of the second part is sentential analysis. 
+</p>
 
 
-            <div class="row justify-content-center">
+<p>Sentential analysis is divided into burnout and non_burnout and is displayed through a half donut chart. The right part is top modeling results. The visualization form we designed for top modeling results is a network diagram, bubbles and bubbles are connected by lines. The thickness of the lines is different, based on the overlap rate of each theme. The more overlap the themes are, the thicker the line. Also, we think this design is clear and simple enough, but it also includes all the contents at the same time. Our design provides users with a separate window, so the users can understand the relationship between each object.
+</p>
+<h6><i> Visualization designs</i></h6>
+<p>The intended visualization designs that we selected were bubble chart, bar chart  and half donut. The reason we chose the  half donut is to differentiate the sentiments of the healthcare professionals. By the use of sentimental analysis we tried to understand positive and the negative emotions and further classify and visualize the burnout and the non-burnout factors in a simpler way. Also, by using a barchart we are able to classify the 21 work factors. Moreover, we added a tool tip containing a dynamically generated table for each category value. Here, hovering over any of the bars will pop up a window that includes further information. 
+</p>
+<h6><i>Final design and implementation</i>
+</h6>
+<p>In our final design, we removed the sentiment analysis part, as we found that most of our data was negative and passive. In general, the results of such analyzes are of little use in dashboards. 
+</p>
+<div class="text-center">
+<img class="" width="800" height=auto alt="Picture4" src="https://user-images.githubusercontent.com/32476235/205840540-d34cb580-ad3f-4fb0-8982-2d03e24d58a7.png">
+</div>
+<p>On the left, part A of the dashboard, we can see the result of feature selection, and the burnout factors ranked according to the importance of each feature. There will be a mouseover pop-up window, showing TFIDF results of the comments related to the factors. 
+</p>
+<div class="text-center">
+<img class="" width="400" height=auto alt="Picture5" src="https://user-images.githubusercontent.com/32476235/205840650-6e27e026-9af3-4247-962c-5e346deab8bf.png">
+</div>
+<p>In part B of the dashboard, first there is a pie chart showing the number of participant data we have, and the percentage of burnout rate. In the middle, we showed the number of burnout text data and non-burnout text data, and finally the demographic data of all participants. In part C of the dashboard we can see the topic modeling result as a network diagram. Each bubble representent a topic. The connections drawn between topics indicate topical connections in terms of keywords overlap. Visualize the clusters of documents in a 2D space using t-SNE (t-distributed stochastic neighbor embedding) algorithm. The topic modeling result can be filter based on job positions. 
+</p>
+<h4>Data Transformation and Statistical Analysis </h4>
+<p>The data preparation procedures start from data cleaning and were employed, including converting text data and severity ranking to numeric data, for example, Extremely High = 5, High = 4, Moderate = 3, Low = 2, and Not at all = 1, removal of ineligible responses (there is one response in the dataset including no data), invalid questionnaire responses. A total of 419 survey responses were used in the analysis. Due to the balanced amount of burnout and without burnout data (With burnout = 175 (58.13%) and Without burnout = 243 (41.86%)), Synthetic Minority Oversampling Technique (SMOTE) (Chawla et al. 2002) is not performed. 
+</p>
+<p>The input variables for feature selection and classification include 4 demographic characteristics, including clinical position, gender, race, and marital status, and the 21 work system factors. The 21 work system factors were divided into ten job demands and job resources. Job demands factors include excessive workload, unmanageable work schedules, inadequate staffing, time pressure, inefficient workflows, interruptions and disruptions, inadequate technology, moral distress, patient factors, administrative burden, and 11 job resource factors, including lack of recognition for quality improvement activities, lack of dedicated time, lack of support for research, professional relationships, organizational culture, physical work environment, values and expectations, job control, intrinsic motivation, extrinsic motivation, work-life integration.  
+The outcome variable that’s analyzed was burnout, as it’s measured by emotional exhaustion (EE) ranked from 1 to 6, and depersonalization (DP) ranked from 1 to 6, for example,. A few times a year or less = 1,  A few times a month = 2, Once a month or less  = 3, A few times a week = 4, Once a week = 5, Everyday = 6. For this study and analysis, we considered EE and DP scores >3 were most associated with a more inclusive definition of burnout. For this analysis, we consider EE and DP scores >3 as a rigorous definition of burnout. To enable binary classification, we divide clinicians into two categories, with burnout having ≥ 3 EE and ≥ 3 DP and without burnout having < 3 EE or < 3 DP. 
+</p>
+<p>By removing non-clinician data for this study, 298 cases in the dataset were split into training data sets, including 238 cases, and testing data, including 60 cases. After all model training and parameter tuning, the test set was set aside to evaluate performance. The training set was further divided into a training set including 190 cases and a development set including 48 cases. The development set was used to rank the models according to the model defined by the area under the receiver operating characteristic curve (ROC AUC) and decide which model to use for testing. 5-fold cross-validation (CV) is used for training and hyperparameter tuning to avoid overfitting. </p>
+<h6><i>Classification:</i></h6>
+
+<p>On the train set evaluation, four classifiers random forest, logistic regression, linear support vector machines, and decision tree are trained using the training and development sets. Random Forest achieves the highest AUC with chi-square feature selection. Furthermore, Random Forest consistently outperforms all other classifiers with and without feature selection (highlighted).
+ 
+On the development set evaluation, the AUC of the classifiers with and without feature selection methods on the dev set, random forest achieves the highest AUC. Furthermore, random forest consistently outperforms all other classifiers with and without feature selection, just like in CV.
+ 
+Since random forests consistently outperformed other classifiers on the training and development set, random forests were only evaluated on the test set. Random forests with job resources had the highest test AUC.
+</p>
+<h6><i>Topic Modeling:</i></h6>
+<p>After data collection and data cleaning, 1072 text data are used in topic modeling. Among the data, 641 are labeled burnout and 431 are labeled as none burnout data based on the calculation of EE and DP. The text data is preprocessed and then analyzed. To understand if the fact that people that are burnout would write more or not, the word count of burnout comments and non-burnout comments are 23497 and 12206 words.
+</p>
+<p>The documents were preprocessed using python with the Natural Language Toolkit (NLTK) library (6). The process includes converting all text to lowercase, removing special words, tokenization, lemmatization, computing bigrams and trigrams since some topics are so similar that it is phrased rather than single/single words that can distinguish them, removing rare, stop words (the NLTK.corpus English stopwords list) and common tokens.
+</p>
+
+<p>Topic modeling is performed using Latent Dirichlet Allocation (LDA). LDA is an unsupervised technique, meaning prior to running the model, how many topics exist in our corpus is unknown. Based on the result, it was determined that the number of ten topics were most accurate in order to reduce the incidence of redundancies but still maintain distinct topics (7).
+</p>
+<p>Each text response was assigned a list of possible topics and associated probabilities LDA topic modeling was performed on a randomly sampled dataset consisting of 80% of the training dataset and 20% of the testing dataset. Each topic is explained using derived keywords. To estimate distances between subjects, LDAvis is run on the resulting model. LDAvis is an existing visualization for topic modeling. Preliminary results are shown in the figure below.
+</p>
+<p>In LDAvis visualization the left panel labeled Intertopic Distance Map, the circles represent different topics and the distance between them. Similar subjects appear closer, and dissimilar subjects appear farther away. The relative size of the topic circles in the graph corresponds to the relative frequency of that topic in the corpus. Individual topics can be selected for closer review by clicking on their circles or by entering their number in the Selected Topics box in the upper left corner.
+</p>
+
+<p>In LDAvis visualization the right panel contains a bar graph of the top 30 terms. When no topics are selected in the graph on the left, the bar graph shows the top 30 most "prominent" terms in the corpus. The salience of a term is a measure of how often the term occurs in the corpus and how "unique" it is in distinguishing different topics. Selecting each topic on the right modifies the bar graph to show the "related" terms for the selected topic. Relevance is defined in footer 2 and can be tuned by the parameter λ, with smaller λ giving higher weight to the uniqueness of the term, while larger λs correspond to the probability of the term appearing in each topic.
+</p>
+<div class="text-center">
+<img class="" width="800" height=auto alt="Picture6" src="https://user-images.githubusercontent.com/32476235/205840734-74f41696-40f0-4365-90d2-c15457d3e6ce.png">
+</div>
+
+<p>Therefore, to better understand the terminology of each topic, We use λ = 0.
+</p>
+<p>Used to reduce all subjects to a two-dimensional space that is easy to visualize. I used t-Distributed Stochastic Neighbor Embedding (or t-SNE). Get document-topic matrix output from GuidedLDA.</p>
+<div class="text-center">
+<img class="img-fluid" width="800" height=auto alt="Picture7" src="https://user-images.githubusercontent.com/32476235/205840926-1473f1f0-8f5b-4e58-bf24-435d20ec4b0c.png">
+</div>
+
+<p>To further understand the different topics discussed between burnout participants and non-burnout participants, TFIDF is additionally performed based on the factors’s data.</p>          
+
+<h4>Reflections</h4>
+<p>Our Team mainly sticks on our original plans. We try to do everything ahead of the original plan, everybody in our group keeps in touch and updates our individual parts on time or ahead. Nonetheless, even with carefully planning everything first, we still encounter different obstacle during the semester. 
+</p>          
+<p><ol>
+  <li>
+Dataset cleaning and design: We repeated this process six to seven times throughout the semester, because in each analysis (Feature Selection and Topic Modeling) we found that different methods require different data, and the dataset we compiled for Feature Selection is not applicable Topic Modeling and Text Analysis, and vice versa.
+  </li>
+    <li>
+The dataset is not the best design for topic modeling: While LDA is often performed on long content qualitative data, our survey responses vary in length and often mix the topic in one reply. An LDA dataset usually contains topic and long text data like research papers. The title of each article/text is also included in the dataset. As the LDA model algorithm assumes all text in the same data cell is more related. Our dataset did not separate topics in each comment. Thus, the LDA model might need help to accurately return the results for some words (especially those with long text) with a mix of different themes.
+  </li>
+  <li>Hard to think in somebody else's shoes: For a project like ours with a clear goal, lacking a conversation with end users, and lack of understanding of user needs thus using our imagination to design dashboards based on “their needs” is difficult to come up with an approach that adequately conveys our message and becomes a reality dashboard that works.
+
+</li>
+  <li>Spending too much time in the analysis process: In terms of time distribution, even though there was a plan initiated at the beginning of the semester. Our real working timeline was still unevenly distributed. Additionally, to make the performance and the model better, a lot of time was spent working on the machine learning techniques and topic modeling models, and therefore, we lacked time to study d3.js and build web pages.
+
+</li>
+  <li>Cognitive gap of the data: As one of our members has been working with data sets for a longer time compared to other team mates, the state of being more familiar with the data often makes it difficult to communicate or cause dialogue problems due to ingenuity resulting if something was explained clearly or not. However, this problem is also reflected in our dashboard design.
+
+</li>
+</ol></p>
+
+<h4>Summary and Ethical and Societal Considerations</h4>
+
+
+<p>During the epidemic, medical staff played a vital role in the fight against the COVID-19. Irregular work hours and heavy workloads can increase stress and lead to mental health issues such as burnout. The growing prevalence of burnout is adversely affecting clinicians, patients, and the whole healthcare system. From the feature selection results, the main drivers of clinician burnout are related to job resources. However, demographic characteristics such as race, gender, job role and marital status played a role. The COVID-19 pandemic has brought enormous pressure to medical staff, and the psychological pressure of medical staff will also come from the heavy responsibilities and emotions of patients. At a systemic level, healthcare systems are under intense pressure to implement effective burnout mitigation and prevention strategies.
+</p>          
+<p>We believe that hospitals should take part of the responsibility to protect the mental health of doctors and nurses. They should facilitate actions for hospitals to organize medical staff to participate in psychological counseling training, carry out daily decompression, assessment of mental health, understand the changes in the psychological activities of medical staff, and help medical staff actively implement and  cope with negative emotions. 
+</p>          
+<p>To push the implementation process to a next level, our findings provide an evidence-based prioritization of key factors contributing to clinician burnout that healthcare systems may consider targeting for optimization. In addition to the methods exemplified above, it is possible to understand the key factors of job burnout more systematically and improve from them. Quantitative analysis of topic modeling provided deeper information under the NAM framework, allowing us to drill down to 21 widely discussed workplace stressors and discover themes and themes that needed to be formalized and the degree of relevance/topic per factor (topic) overlap. Armed with this level of understanding, Leadership can create plans for improvement based on how relevant each topic is to the topic itself.
+</p>  
+
+<h4>
+Future Work
+</h4>
+<p>After the presentation, we found an opportunity to conduct an interview with the user. In the future, the overall dashboard will be modified in the following directions:
+</p>  
+<p>
+  <ol>
+    <li>
+      Apply feature selection based on the different job positions, to understand the critical workplace stressors of each role.
+
+    </li>
+    <li>Based on the result of each role’s feature selection, filter the text data with that position and top-n workplace stressor to understand the topic modeling result.
+</li>
+<br>
+<p>By doing (1) and (2), we can not only have a global and entire view of what causes healthcare professional burnout but also, based on each role, what is critical. Also, what are the deeper insights, major topics, and sub-topics based on not only job positions but also things under the severity factors that need to be aware and generate immediate action too?</p>
+  
+<li>
+Calculate the number of text mentioned in each topic to change the size of the bubble in the network diagram to have the understanding of how controversial are particular topics?
+
+</li>
+<li>Include more function for comparison of the visualization for the analysis results for different positions. ( Bar chart for feature selection, Network diagram for topic modeling) 
+</li>
+<li>More research into topic modeling methods for short texts like stLDA-C (11)
+</li>
+<li>Increase model performance by only taking the extreme non-burnout data and burnout data to build the model.
+</li>
+<li>Improve data quality: While LDA is often performed on long content qualitative data, our survey responses vary in length and often mix the topic in one reply. An LDA dataset usually contains topic and long text data like research papers. The title of each article/text is also included in the dataset. As the LDA model algorithm assumes all text in the same data cell is more related. Our dataset did not separate topics in each comment. Thus, the LDA model might need help to accurately return the results for some words (especially those with long text) with a mix of different themes.
+</li>
+<div class="text-center">
+<img class="" width="800" height=auto alt="Picture8" src="https://user-images.githubusercontent.com/32476235/205841024-23278bb7-0387-46a0-9fdc-5226d2a7f9d1.png">
+</div>
+
+</ol>
+</p>
+
+<h4>
+Reference
+</h4>
+<p>
+  <ol>
+    <li>
+C.P. West, L.N. Dyrbye, T.D. Shanafelt Physician burnout: contributors, consequences, and solutions J. Intern. Med., 283 (6) (2018), pp. 516-529
+
+    </li>
+     <li>
+Shanafelt, T. D., West, C. P., Dyrbye, L. N., Trockel, M., Tutty, M., Wang, H., Carlasare, L. E., & Sinsky, C. (2022, September 13). Changes in burnout and satisfaction with work-life integration in physicians during the first two years of the COVID-19 pandemic. Mayo Clinic Proceedings. Retrieved December 3, 2022, from https://www.mayoclinicproceedings.org/article/S0025-6196(22)00515-8/fulltext
+
+    </li>
+     <li>
+Rotenstein LS, Torre M, Ramos MA, et al. Prevalence of Burnout Among Physicians: A Systematic Review. JAMA. 2018;320(11):1131–1150. doi:10.1001/jama.2018.12777
+
+    </li>
+     <li>
+De Hert S. Burnout in Healthcare Workers: Prevalence, Impact and Preventative Strategies. Local Reg Anesth. 2020 Oct 28;13:171-183. doi: 10.2147/LRA.S240564. PMID: 33149664; PMCID: PMC7604257.
+
+    </li>
+     <li>
+National Academies of Sciences, E., and Medicine Taking Action Against Clinician Burnout: A Systems Approach to Professional Well-Being, National Academies of Sciences, Engineering, and Medicine: Washington, DC, 2019.
+
+    </li>
+     <li>
+Bird, Steven, Edward Loper and Ewan Klein (2009), Natural Language Processing with Python. O'Reilly Media Inc.
+
+    </li>
+     <li>
+Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent dirichlet allocation. Journal of machine Learning research, 3(Jan), 993-1022.
+
+    </li>
+     <li>
+Tierney, G., Bail, C., & Volfovsky, A. (2021). Author Clustering and Topic Estimation for Short Texts. arXiv preprint arXiv:2106.09533.
+    </li>
+
+  </ol>
+</p>
+
+<div class="row justify-content-center">
               <div class="col-md-auto" style="width: 70%;">
 
               </div>
